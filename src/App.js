@@ -8,6 +8,8 @@ import { inputColor, setRect } from "./action";
 
 import { ActionCreators } from "redux-undo";
 
+import CustomPicker from "./Color";
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -67,17 +69,11 @@ class App extends Component {
         </p>
         <p>
           <span>文字色　</span>
-          <input
-            type="text"
-            value={this.props.color}
-            onChange={e => {
-              this.props.inputColor(e.target.value);
-              this.setState({ color: this.props.color });
-            }}
-          />
+          <span>{this.props.color}</span>
         </p>
-        <p>{this.props.color}</p>
-        <p style={{ display: "none" }}>
+        <CustomPicker color={this.props.color} inputColor={this.props.inputColor} />
+        {/*
+        <p>
           <input
             type="checkbox"
             value="h1"
@@ -100,6 +96,7 @@ class App extends Component {
           <input type="checkbox" value="section" id="section" />
           <label htmlFor="section">SECTION</label>
         </p>
+        */}
         <Wrap>
           <FrameArea
             src="./foo.html"
