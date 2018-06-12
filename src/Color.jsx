@@ -3,35 +3,33 @@ import styled from "styled-components";
 import { CustomPicker } from "react-color";
 import { Saturation, Hue } from "react-color/lib/components/common";
 
-class ColorPicker extends Component {
-  render() {
-    return (
-      <div>
-        <ColorItem>
-          <Saturation
-            {...this.props}
-            pointer={CustomPointer}
-            onChange={e => {
-              this.props.inputColor(this.props.hex);
-              this.props.onChange(e);
-            }}
-          />
-        </ColorItem>
-        <ColorSlider>
-          <Hue
-            {...this.props}
-            direction="vertical"
-            pointer={CustomPointer}
-            onChange={e => {
-              this.props.inputColor(this.props.hex);
-              this.props.onChange(e);
-            }}
-          />
-        </ColorSlider>
-      </div>
-    );
-  }
-}
+export default CustomPicker(function ColorPicker(props) {
+  return (
+    <div>
+      <ColorItem>
+        <Saturation
+          {...props}
+          pointer={CustomPointer}
+          onChange={e => {
+            props.inputColor(props.hex);
+            props.onChange(e);
+          }}
+        />
+      </ColorItem>
+      <ColorSlider>
+        <Hue
+          {...props}
+          direction="vertical"
+          pointer={CustomPointer}
+          onChange={e => {
+            props.inputColor(props.hex);
+            props.onChange(e);
+          }}
+        />
+      </ColorSlider>
+    </div>
+  );
+});
 
 const ColorItem = styled.div`
   display: inline-block;
@@ -51,10 +49,9 @@ const ColorSlider = styled.div`
 `;
 
 const CustomPointer = styled.div`
-  width: .5rem;
-  height: .5rem;
-  margin-left: .2rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-left: 0.2rem;
   border: 1px solid #fff;
   border-radius: 100%;
 `;
-export default CustomPicker(ColorPicker);
