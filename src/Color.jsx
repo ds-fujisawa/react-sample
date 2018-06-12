@@ -1,12 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 import { CustomPicker } from "react-color";
 import { Saturation, Hue } from "react-color/lib/components/common";
+import ReactTooltip from "react-tooltip";
 
 export default CustomPicker(function ColorPicker(props) {
   return (
     <div>
-      <ColorItem>
+      <ColorItem data-tip data-for="saturation">
         <Saturation
           {...props}
           pointer={CustomPointer}
@@ -15,8 +16,11 @@ export default CustomPicker(function ColorPicker(props) {
             props.onChange(e);
           }}
         />
+        <ReactTooltip id="saturation">
+          <span>{props.hex}</span>
+        </ReactTooltip>
       </ColorItem>
-      <ColorSlider>
+      <ColorSlider data-tip data-for="hue">
         <Hue
           {...props}
           direction="vertical"
@@ -26,6 +30,9 @@ export default CustomPicker(function ColorPicker(props) {
             props.onChange(e);
           }}
         />
+        <ReactTooltip id="hue">
+          <span>{props.hex}</span>
+        </ReactTooltip>
       </ColorSlider>
     </div>
   );

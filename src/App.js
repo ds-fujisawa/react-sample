@@ -67,10 +67,6 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <p>
-          <span>文字色　</span>
-          <span>{this.props.color}</span>
-        </p>
         <CustomPicker color={this.props.color} inputColor={this.props.inputColor} />
         {/*
         <p>
