@@ -14,6 +14,11 @@ import CustomPicker from './Color';
 import MarkdownEditor from './MarkdownEditor';
 
 import Temp from './Temp';
+import HoC from './HoC';
+
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 class App extends Component {
   constructor(props) {
@@ -141,17 +146,6 @@ class App extends Component {
               this.setState({
                 color: getComputedStyle(doc.getElementById('foo')).color
               });
-              console.log(
-                [0, 1, 2, 3].reduce(function(
-                  previousValue,
-                  currentValue,
-                  index,
-                  array
-                ) {
-                  console.log(previousValue, currentValue, index, array);
-                  return previousValue + currentValue;
-                })
-              );
 
               // UIイベント受信用
               this.setState({ event: new Event('notify') });
@@ -196,13 +190,18 @@ class App extends Component {
         </p>
         <MarkdownEditor />
         {this.state.components[this.state.selected].map(v => Temp[v])}
-        <p>
-          <button onClick={e => this.setState({ selected: 'hoge' })}>
-            hoge
-          </button>
-          <button onClick={e => this.setState({ selected: 'foo' })}>foo</button>
-          <button onClick={e => this.setState({ selected: 'bar' })}>bar</button>
-        </p>
+        <RadioGroup
+          aria-label="gender"
+          name="gender1"
+          value={this.state.selected}
+          onChange={e => this.setState({ selected: e.target.value })}
+        >
+          <FormControlLabel value="hoge" control={<Radio />} label="hoge" />
+          <FormControlLabel value="foo" control={<Radio />} label="foo" />
+          <FormControlLabel value="bar" control={<Radio />} label="bar" />
+        </RadioGroup>
+        <h1>Counter</h1>
+        <HoC />
       </div>
     );
   }
